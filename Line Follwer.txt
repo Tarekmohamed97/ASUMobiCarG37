@@ -1,3 +1,0 @@
-Line Following / Follower Robot Car with Infrared IR Sensor | Arduino
-
-https://www.youtube.com/watch?v=F1-pWC4HmHg&index=11&list=PL2GAS4vHuGW2J5XKKLlsezt-A9Ii96tau
