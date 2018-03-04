@@ -1,7 +1,12 @@
-//version 0.5
+//version 0.7(with obstacle avoidance)
 //not tested yet
 char input;
 char mode;
+long intevral=0;
+void avoid()
+{
+  
+}
 void car_left()
 {
  digitalWrite(22,HIGH);
@@ -77,14 +82,42 @@ void car_stop()
  analogWrite(4,0);
  analogWrite(5,0);
 }
-void setup() {
-Serial1.begin(9600);
+void setup()
+{
+Serial.begin(9600);
+pinMode(22,OUTPUT);
+pinMode(23,OUTPUT);
+pinMode(24,OUTPUT);
+pinMode(25,OUTPUT);
+pinMode(26,OUTPUT);
+pinMode(27,OUTPUT);
+pinMode(28,OUTPUT);
+pinMode(29,OUTPUT);
+pinMode(30,OUTPUT);
+pinMode(2,OUTPUT);
+pinMode(3,OUTPUT);
+pinMode(4,OUTPUT);
+pinMode(5,OUTPUT);
 }
 
-void loop() {
-if(Serial1.available()>0)
+void loop()
 {
-input=Serial1.read();
+digitalWrite(30,HIGH);
+delayMicroseconds(10);
+digitalWrite(30,LOW);
+intevral = pulseIn(31, HIGH);
+if(intevral<500)
+{
+  //actually this must be measure practical
+car_stop();
+delay(1);
+car_right();
+delay(100);
+car_stop();
+}
+if((Serial.available()>0)&&(intevral>500))
+{
+input=Serial.read();
 if(input=='B')
 {
   mode=input;
@@ -118,5 +151,4 @@ if(input=='a')
 }
 }
 }
-
 
